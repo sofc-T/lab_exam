@@ -1,4 +1,4 @@
-package com.hr.hr.controllers;
+package com.hr.hr.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
