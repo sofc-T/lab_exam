@@ -34,7 +34,7 @@ public class LeaveManageService {
 
     public LeaveDetails getLeaveDetailsOnId(int id) {
 
-	return leaveManageRepository.findOne(id);
+	return leaveManageRepository.findOneById(id);
     }
 
     public void updateLeaveDetails(LeaveDetails leaveDetails) {
