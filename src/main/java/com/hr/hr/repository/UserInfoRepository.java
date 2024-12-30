@@ -29,4 +29,9 @@ public interface UserInfoRepository extends JpaRepository<UserInfo, Serializable
     @Modifying
     @Query(value = "update userinfo set active=true where id=?", nativeQuery = true)
     public void unBlockUser(int id);
+
+    @Transactional
+    @Modifying
+    @Query(value = "delete from userinfo where id=?", nativeQuery = true)
+    public void deleteUserById(int id);
 }
