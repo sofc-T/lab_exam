@@ -17,6 +17,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 public class SecurityConfiguration {
 
+    @SuppressWarnings("unused")
     @Autowired
     private DataSource dataSource;
 
