@@ -7,6 +7,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hr.hr.models.LeaveDetails;
 
@@ -14,9 +15,9 @@ import com.hr.hr.models.LeaveDetails;
 public class LeaveManageNativeSqlRepo {
 
     @PersistenceContext
-    EntityManager entityManager;
+    private EntityManager entityManager;
 
-    @SuppressWarnings("unchecked")
+    @Transactional
     public List<LeaveDetails> getAllLeavesOnStatus(String status) {
         String sql = "SELECT * FROM leave_details WHERE status = :status";
         Query query = entityManager.createNativeQuery(sql, LeaveDetails.class);
