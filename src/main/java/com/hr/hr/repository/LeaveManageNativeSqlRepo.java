@@ -1,4 +1,4 @@
-package com.lms.repository;
+package com.hr.hr.repository;
 
 import java.util.List;
 
