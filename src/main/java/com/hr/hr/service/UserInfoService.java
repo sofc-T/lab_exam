@@ -48,7 +48,7 @@ public class UserInfoService {
     }
 
     public void deleteUser(int id) {
-	userInfoRepository.delete(id);
+	userInfoRepository.deleteById(id);
     }
 
     public void blockUser(int id) {
