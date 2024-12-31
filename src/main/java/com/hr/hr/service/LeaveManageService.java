@@ -56,16 +56,17 @@ public class LeaveManageService {
 
     public List<LeaveDetails> getAllLeavesOnStatus(boolean pending, boolean accepted, boolean rejected) {
 
-	StringBuffer whereQuery = new StringBuffer();
-	if (pending)
-	    whereQuery.append("active=true or ");
-	if (accepted)
-	    whereQuery.append("(active=false and accept_reject_flag=true) or ");
-	if (rejected)
-	    whereQuery.append("(active=false and accept_reject_flag=false) or ");
-
-	whereQuery.append(" 1=0");
-	
-	return leaveManageNativeRepo.getAllLeavesOnStatus(whereQuery);
+        StringBuilder whereQuery = new StringBuilder(); 
+        if (pending)
+            whereQuery.append("active=true or ");
+        if (accepted)
+            whereQuery.append("(active=false and accept_reject_flag=true) or ");
+        if (rejected)
+            whereQuery.append("(active=false and accept_reject_flag=false) or ");
+    
+        whereQuery.append(" 1=0"); 
+    
+        return leaveManageNativeRepo.getAllLeavesOnStatus(whereQuery.toString()); 
     }
+    
 }
