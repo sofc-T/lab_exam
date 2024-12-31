@@ -23,6 +23,11 @@ public class LeaveManageNativeSqlRepo {
         Query query = entityManager.createNativeQuery(sql, LeaveDetails.class);
         query.setParameter("status", status);  
 
-        return query.getResultList();
+        try {
+            return query.getResultList();
+        } catch (Exception e) {
+            System.err.println("Error fetching leave details: " + e.getMessage());
+            throw e;
+        }
     }
 }
