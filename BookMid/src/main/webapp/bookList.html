@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book List</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="mb-4">Book List</h2>
+        <div id="BookListContainer">
+            <!-- Book list will be loaded here by the servlet -->
+        </div>
+    </div>
+    <script>
+      fetch('BookList')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('BookListContainer').innerHTML = data;
+        });
+    </script>
+</body>
+</html>

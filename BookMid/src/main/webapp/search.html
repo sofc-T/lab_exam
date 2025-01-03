@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Books</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="mb-4">Search Books</h2>
+        <form action="searchList" method="get">
+            <div class="mb-3">
+                <label for="searchTerm" class="form-label">Input Title</label>
+                <input type="text" class="form-control" id="searchTerm" name="searchTerm" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Proceed</button>
+            <a href="index.html" class="btn btn-secondary">Back</a>
+        </form>
+        <div id="searchResultsContainer">
+            
+        </div>
+    </div>
+      <script>
+          const form = document.querySelector('form');
+        form.addEventListener('submit', function(event){
+          event.preventDefault();
+          const searchTerm = document.getElementById('searchTerm').value;
+            fetch(`searchList?searchTerm=${searchTerm}`)
+              .then(response => response.text())
+              .then(data => {
+                document.getElementById('searchResultsContainer').innerHTML = data;
+              });
+        });
+    </script>
+</body>
+</html>
