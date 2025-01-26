@@ -13,7 +13,6 @@ import com.hr.hr.models.UserInfo;
 
 @Repository(value = "userInfoRepository")
 public interface UserInfoRepository extends JpaRepository<UserInfo, Serializable> {
-
     public UserInfo findByEmail(String email);
 
     public List<UserInfo> findAllByOrderById();
@@ -22,16 +21,16 @@ public interface UserInfoRepository extends JpaRepository<UserInfo, Serializable
 
     @Transactional
     @Modifying
-    @Query(value = "UPDATE userinfo SET active=false WHERE id=:id", nativeQuery = true)
+    @Query(value = "UPDATE user_info SET active=false WHERE id=:id", nativeQuery = true)
     public void blockUser(int id);
 
     @Transactional
     @Modifying
-    @Query(value = "UPDATE userinfo SET active=true WHERE id=:id", nativeQuery = true)
+    @Query(value = "UPDATE user_info SET active=true WHERE id=:id", nativeQuery = true)
     public void unBlockUser(int id);
 
     @Transactional
     @Modifying
-    @Query(value = "DELETE FROM userinfo WHERE id=:id", nativeQuery = true)
+    @Query(value = "DELETE FROM user_info WHERE id=:id", nativeQuery = true)
     public void deleteUserById(int id);
 }
