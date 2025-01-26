@@ -74,15 +74,15 @@ public class AdminController {
 	} else if (action.equals("delete")) {
 	    userInfoService.deleteUser(id);
 	    mav.addObject("successMessage", "User removed successfully!!");
-	    mav.setView(new RedirectView("/leave-management-system/user/manage-users"));
+	    mav.setView(new RedirectView("/user/manage-users"));
 	} else if (action.equals("block")) {
 	    userInfoService.blockUser(id);
 	    mav.addObject("successMessage", "User blocked successfully!!");
-	    mav.setView(new RedirectView("/leave-management-system/user/manage-users"));
+	    mav.setView(new RedirectView("/user/manage-users"));
 	} else if (action.equals("unblock")) {
 	    userInfoService.unBlockUser(id);
 	    mav.addObject("successMessage", "User is active now!!");
-	    mav.setView(new RedirectView("/leave-management-system/user/manage-users"));
+	    mav.setView(new RedirectView("/user/manage-users"));
 	}
 
 	return mav;
@@ -90,29 +90,29 @@ public class AdminController {
     
     @RequestMapping(value = "/user/manage-users/save-user-edit", method = RequestMethod.POST)
     public ModelAndView saveUserEdit(ModelAndView mav, @Valid UserInfo userInfo, BindingResult bindResult) {
+	
+	var userExists = userInfoService.findUserByEmail(userInfo.getEmail());
+	var updateUser = userInfoService.getUserById(userExists.getId());
 
-	/*User userExists = userService.findUserByEmail(user.getEmail());
-	User updateUser = userService.getUserById(user.getId());
-
-	if (userExists != null && !user.getEmail().equals(updateUser.getEmail())) {
+	if (userExists != null && !userInfo.getEmail().equals(updateUser.getEmail())) {
 	    bindResult.rejectValue("email", "error.user", "User already exists with Email id");
 	}
 
 	if (bindResult.hasErrors()) {
 	    mav.addObject("errorField", bindResult.getFieldError().getField());
 	    mav.addObject("errorMessage", bindResult.getFieldError().getDefaultMessage());
-	    mav.setView(new RedirectView("/docs-app/admin/manage-users/edit/" + user.getId() + ""));
+	    mav.setView(new RedirectView("/user/manage-users/edit/" + userInfo.getId() + ""));
 	} else {
-	    updateUser.setName(user.getName());
-	    updateUser.setLastName(user.getLastName());
-	    updateUser.setEmail(user.getEmail());
-	    updateUser.setPassword(user.getPassword());
-	    updateUser.setRole(user.getRole());
-	    userService.saveUser(updateUser);
+	    updateUser.setFirstName(userInfo.getFirstName());
+	    updateUser.setLastName(userInfo.getLastName());
+	    updateUser.setEmail(userInfo.getEmail());
+	    updateUser.setPassword(userInfo.getPassword());
+	    updateUser.setRole(userInfo.getRole());
+	    userInfoService.saveUser(updateUser);
 	    mav.addObject("successMessage", "User Details updated successfully!!");
-	    mav.setView(new RedirectView("/docs-app/admin/manage-users"));
+	    mav.setView(new RedirectView("/user/manage-users"));
 	}
-*/
+
 	return mav;
     }
 
